@@ -1,0 +1,15 @@
+.sticky-textarea {
+  width: 100%;
+  height: calc(100% - 25px);
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: black;
+  padding: 10px;
+  resize: none;
+}
+
+.sticky {
+  background-color: rgb(250, 140, 140);
+  border: 1px solid black;
+}

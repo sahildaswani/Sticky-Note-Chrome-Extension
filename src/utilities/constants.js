@@ -1,0 +1,4 @@
+const STICKY_WIDTH = 200;
+const STICKY_HEIGHT = 200;
+
+export { STICKY_WIDTH, STICKY_HEIGHT };

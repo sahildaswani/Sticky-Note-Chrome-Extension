@@ -6,7 +6,14 @@ import { AiOutlineDelete } from "react-icons/ai";
 
 import "./dropdown.css";
 
-const Dropdown = ({ isMenuOpen, setIsMenuOpen, setColor, color }) => {
+const Dropdown = ({
+  toggleShowMenu,
+  setColor,
+  color,
+  onDelete,
+  pinned,
+  togglePinned,
+}) => {
   const colorArray = Object.keys(COLORS).map((key) => COLORS[key]);
 
   return (
@@ -17,7 +24,7 @@ const Dropdown = ({ isMenuOpen, setIsMenuOpen, setColor, color }) => {
             className="color-item"
             style={{ backgroundColor: color.body }}
             onClick={() => {
-              setIsMenuOpen(!isMenuOpen);
+              toggleShowMenu();
               setColor(color);
             }}
           ></div>
@@ -27,13 +34,18 @@ const Dropdown = ({ isMenuOpen, setIsMenuOpen, setColor, color }) => {
         color={color}
         className="dropdown-item bd"
         icon={<BsPinAngle style={{ margin: "0px 8px" }} />}
+        onClick={() => {
+          togglePinned();
+          toggleShowMenu();
+        }}
       >
-        Pin
+        {pinned ? "Unpin" : "Pin"}
       </DropdownItem>
       <DropdownItem
         color={color}
         className="dropdown-item bd"
         icon={<AiOutlineDelete style={{ margin: "0px 8px" }} />}
+        onClick={(e) => onDelete(e)}
       >
         Delete
       </DropdownItem>

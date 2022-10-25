@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
+import useToggle from "../../utilities/hooks/useToggle";
 import { Rnd } from "react-rnd";
 
 import Header from "./header/header";
@@ -16,9 +17,12 @@ const Sticky = ({ top, left, width, height, text }) => {
   const [stickyHeight, setStickyHeight] = useState(height || STICKY_HEIGHT);
   const [stickyText, setStickyText] = useState(text || "");
   const [color, setColor] = useState(COLORS.BLUE);
+  const [pinned, togglePinned] = useToggle(false);
 
   const onDelete = (e) => {
-    e.target.parentNode.parentNode.parentNode.remove();
+    //find parent with sticky class
+    const sticky = e.target.closest(".sticky");
+    sticky.parentNode.remove();
   };
 
   const handleUpdate = () => {
@@ -50,8 +54,16 @@ const Sticky = ({ top, left, width, height, text }) => {
       }}
       bounds="body"
       dragHandleClassName="header"
+      disableDragging={pinned}
+      enableResizing={!pinned}
     >
-      <Header onDelete={onDelete} setColor={setColor} color={color} />
+      <Header
+        onDelete={onDelete}
+        setColor={setColor}
+        color={color}
+        togglePinned={togglePinned}
+        pinned={pinned}
+      />
       <textarea
         className="sticky-textarea"
         ref={stickyRef}

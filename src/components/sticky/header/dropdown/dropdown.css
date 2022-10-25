@@ -1,0 +1,39 @@
+.dropdown {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.dropdown-item {
+  padding: 10px 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.color-selection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: stretch;
+  height: 30px;
+}
+
+.color-item {
+  cursor: pointer;
+  height: 100%;
+  flex: 1;
+  transform: scale(1);
+  transition-duration: 300ms;
+}
+
+.color-item:hover {
+  transform: scale(1.05);
+  transition-duration: 300ms;
+}
+
+.bd {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+}

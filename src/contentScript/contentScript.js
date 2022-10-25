@@ -4,7 +4,8 @@ import React from "react";
 
 const renderSticky = (top, left, width, height, text) => {
   const div = document.createElement("div");
-  div.style = "position: absolute; top: 0; left: 0; width: 100%; height: 100%;";
+  div.style =
+    "position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;";
   ReactDOM.render(
     <Sticky top={top} left={left} width={width} height={height} text={text} />,
     div

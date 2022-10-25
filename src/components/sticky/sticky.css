@@ -1,6 +1,6 @@
 .sticky-textarea {
-  width: 100%;
-  height: calc(100% - 25px);
+  width: calc(100% - 20px);
+  height: calc(100% - 40px);
   border: none;
   outline: none;
   background-color: transparent;
@@ -10,6 +10,7 @@
 }
 
 .sticky {
-  background-color: rgb(250, 140, 140);
   border: 1px solid black;
+  z-index: 10000;
+  pointer-events: auto;
 }

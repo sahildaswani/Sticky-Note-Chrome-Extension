@@ -1,8 +1,16 @@
 /* header takes up vertical width and has a height of 30px */
 .header {
-  width: 100%;
   height: 20px;
-  background-color: rgb(243, 115, 115);
   z-index: 1000;
   cursor: move;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 3px;
+  padding-right: 10px;
+}
+
+.sticky-icon {
+  color: white;
+  cursor: pointer;
 }

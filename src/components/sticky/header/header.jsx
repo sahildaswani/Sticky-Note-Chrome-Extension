@@ -4,7 +4,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import { SlOptions } from "react-icons/sl";
 
 import Dropdown from "./dropdown/dropdown";
-import "./header.css";
+import { header, stickyIcon } from "./header.styles";
 
 const Header = ({ onDelete, color, setColor, togglePinned, pinned }) => {
   const [showMenu, toggleShowMenu] = useToggle();
@@ -14,16 +14,21 @@ const Header = ({ onDelete, color, setColor, togglePinned, pinned }) => {
       <div
         className="header"
         style={{
+          ...header,
           backgroundColor: color.header,
           cursor: pinned ? "default" : "move",
         }}
       >
         <IoCloseOutline
-          size="1.4em"
+          size={22}
           onClick={(e) => onDelete(e)}
-          className="sticky-icon"
+          style={stickyIcon}
         />
-        <SlOptions className="sticky-icon" onClick={() => toggleShowMenu()} />
+        <SlOptions
+          size={16}
+          style={stickyIcon}
+          onClick={() => toggleShowMenu()}
+        />
       </div>
       {showMenu && (
         <Dropdown

@@ -3,7 +3,7 @@ import { COLORS } from "../../../../utilities/constants";
 import DropdownItem from "./dropdownItem";
 import { BsPinAngle } from "react-icons/bs";
 import { AiOutlineDelete } from "react-icons/ai";
-
+import { dropdown, colorSelection } from "./dropdown.styles";
 import "./dropdown.css";
 
 const Dropdown = ({
@@ -17,12 +17,12 @@ const Dropdown = ({
   const colorArray = Object.keys(COLORS).map((key) => COLORS[key]);
 
   return (
-    <div className="dropdown">
-      <div className="color-selection bd">
+    <div style={dropdown}>
+      <div style={colorSelection}>
         {colorArray.map((color) => (
           <div
-            className="color-item"
             style={{ backgroundColor: color.body }}
+            className="color-item"
             onClick={() => {
               toggleShowMenu();
               setColor(color);
@@ -32,7 +32,6 @@ const Dropdown = ({
       </div>
       <DropdownItem
         color={color}
-        className="dropdown-item bd"
         icon={<BsPinAngle style={{ margin: "0px 8px" }} />}
         onClick={() => {
           togglePinned();
@@ -43,7 +42,6 @@ const Dropdown = ({
       </DropdownItem>
       <DropdownItem
         color={color}
-        className="dropdown-item bd"
         icon={<AiOutlineDelete style={{ margin: "0px 8px" }} />}
         onClick={(e) => onDelete(e)}
       >

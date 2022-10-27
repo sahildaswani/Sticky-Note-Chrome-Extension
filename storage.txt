@@ -1,0 +1,20 @@
+sticky-extension = {
+  [projectId]: {
+    name: 'project name',
+    stickies = {
+      [url]: [
+        {
+          id: 'id',
+          text: 'text',
+          color: 'color',
+          top: 'top',
+          left: 'left',
+          width: 'width',
+          height: 'height',
+          pinned: false,
+          createdAt: 'createdAt',
+        },
+      ],
+    }
+  }
+}

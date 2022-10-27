@@ -1,10 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import { dropdownItem } from "./dropdown.styles";
 
 const DropdownItem = ({ children, ...props }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const style = {
+    ...dropdownItem,
     backgroundColor: props.color.header,
     opacity: isHovered ? "0.8" : "1",
   };

@@ -28,4 +28,6 @@ const COLORS = {
   },
 };
 
-export { STICKY_WIDTH, STICKY_HEIGHT, COLORS };
+const EXTENSION_KEY = "sticky-extension-261022";
+
+export { STICKY_WIDTH, STICKY_HEIGHT, COLORS, EXTENSION_KEY };

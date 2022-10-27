@@ -5,7 +5,7 @@ import { Rnd } from "react-rnd";
 
 import Header from "./header/header";
 import { STICKY_WIDTH, STICKY_HEIGHT, COLORS } from "../../utilities/constants";
-import "./sticky.css";
+import { stickyTextarea, sticky } from "./sticky.styles";
 
 const Sticky = ({ top, left, width, height, text }) => {
   const stickyRef = useRef(null);
@@ -21,7 +21,7 @@ const Sticky = ({ top, left, width, height, text }) => {
 
   const onDelete = (e) => {
     //find parent with sticky class
-    const sticky = e.target.closest(".sticky");
+    const sticky = e.target.closest(".react-draggable");
     sticky.parentNode.remove();
   };
 
@@ -39,9 +39,8 @@ const Sticky = ({ top, left, width, height, text }) => {
       position={{ x: stickyLeft, y: stickyTop }}
       minWidth="100px"
       minHeight="100px"
-      cancel=".sticky-textarea .delete-icon"
-      className="sticky"
-      style={{ backgroundColor: color.body }}
+      cancel=".sticky-textarea"
+      style={{ ...sticky, backgroundColor: color.body }}
       onDragStop={(e, d) => {
         setStickyTop(d.y);
         setStickyLeft(d.x);
@@ -66,6 +65,7 @@ const Sticky = ({ top, left, width, height, text }) => {
       />
       <textarea
         className="sticky-textarea"
+        style={stickyTextarea}
         ref={stickyRef}
         onChange={() => setStickyText(stickyRef.current.value)}
         defaultValue={text}

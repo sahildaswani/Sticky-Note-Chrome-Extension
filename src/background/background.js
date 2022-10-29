@@ -6,19 +6,17 @@ chrome.runtime.onInstalled.addListener(() => {
   const projectId = uuidv4();
 
   const store = {
-    [EXTENSION_KEY]: {
-      currentProject: projectId,
-      projects: {
-        [projectId]: {
-          name: "Untitled Project",
-          stickies: {},
-        },
+    currentProject: projectId,
+    projects: {
+      [projectId]: {
+        name: "Untitled Project",
+        stickies: {},
       },
     },
   };
 
   // Store the store in chrome local storage
-  chrome.storage.local.set({ [EXTENSION_KEY]: store }, () => {
+  chrome.storage.local.set({ [EXTENSION_KEY]: { ...store } }, () => {
     if (chrome.runtime.lastError) {
       /* error */
       console.log(chrome.runtime.lastError.message);
@@ -26,4 +24,16 @@ chrome.runtime.onInstalled.addListener(() => {
     }
     console.log("Store initialized");
   });
+});
+
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.status === "complete") {
+    chrome.tabs.sendMessage(
+      tabId,
+      { type: "PAGE_LOADED", url: tab.url },
+      () => {
+        console.log("Page loaded");
+      }
+    );
+  }
 });

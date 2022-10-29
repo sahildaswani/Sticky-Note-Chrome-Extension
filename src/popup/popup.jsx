@@ -6,13 +6,14 @@ import { useChromeStorageLocal } from "use-chrome-storage";
 
 const Popup = () => {
   const [storage, setStorage] = useChromeStorageLocal(EXTENSION_KEY);
-  const project = useMemo(() => {
-    if (storage) {
-      const store = storage[EXTENSION_KEY];
-      return store.projects[store.currentProject];
-    }
-    return "";
-  }, [storage]);
+  console.log(storage);
+  // const project = useMemo(() => {
+  //   if (storage) {
+  //     const store = storage[EXTENSION_KEY];
+  //     return store.projects[store.currentProject];
+  //   }
+  //   return "";
+  // }, [storage]);
 
   return (
     <div style={{ width: "300px", height: "400px" }}>
@@ -29,12 +30,11 @@ const Popup = () => {
       </button>
       <button
         onClick={() => {
-          console.log(store[EXTENSION_KEY]);
+          console.log(storage);
         }}
       >
         Get Storage
       </button>
-      <p>{project.name}</p>
     </div>
   );
 };

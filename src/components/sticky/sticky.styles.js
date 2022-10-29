@@ -13,6 +13,7 @@ const sticky = {
   border: "1px solid black",
   zIndex: "10000",
   pointerEvents: "auto",
+  position: "absolute",
 };
 
 export { stickyTextarea, sticky };

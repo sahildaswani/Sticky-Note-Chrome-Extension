@@ -16,6 +16,7 @@ import "./resize.styles.css";
 const Sticky = ({ top, left, width, height, text, color, uuid }) => {
 	// sticky properties
 	const stickyRef = useRef(null);
+	const mounted = useRef(false);
 
 	const [stickyTop, setStickyTop] = useState(top || window.scrollY + 50);
 	const [stickyLeft, setStickyLeft] = useState(left || (window.innerWidth - STICKY_WIDTH) / 2);
@@ -47,10 +48,27 @@ const Sticky = ({ top, left, width, height, text, color, uuid }) => {
 		}
 	};
 
+	useEffect(() => {
+		mounted.current = true;
+
+		return () => {
+			mounted.current = false;
+		};
+	}, []);
+
 	// update storage when sticky properties change
 	useEffect(() => {
 		onUpdate();
-	}, [stickyTop, stickyLeft, stickyWidth, stickyHeight, stickyText, stickyColor, pinned]);
+	}, [
+		stickyTop,
+		stickyLeft,
+		stickyWidth,
+		stickyHeight,
+		stickyText,
+		stickyColor,
+		pinned,
+		mounted.current,
+	]);
 
 	return (
 		<Draggable

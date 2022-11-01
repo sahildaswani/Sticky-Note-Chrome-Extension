@@ -12,15 +12,16 @@ const Dropdown = ({ toggleShowMenu, setColor, color, onDelete, pinned, togglePin
 	return (
 		<div style={dropdown}>
 			<div style={colorSelection}>
-				{colorArray.map((color) => (
+				{colorArray.map((color, index) => (
 					<div
+						key={`color-${index}`}
 						style={{ backgroundColor: color.body }}
 						className="color-item"
 						onClick={() => {
 							toggleShowMenu();
 							setColor(color);
 						}}
-					></div>
+					/>
 				))}
 			</div>
 			<DropdownItem

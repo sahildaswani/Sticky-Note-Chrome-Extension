@@ -1,15 +1,17 @@
-import Sticky from "../components/sticky/sticky";
-import ReactDOM from "react-dom";
 import React from "react";
-import { EXTENSION_KEY } from "../utilities/constants";
+import { createRoot } from "react-dom/client";
 import { v4 as uuidv4 } from "uuid";
+import Sticky from "../components/sticky/sticky";
+import { EXTENSION_KEY } from "../utilities/constants";
 
 const renderSticky = (uuid = uuidv4(), top, left, width, height, text, color) => {
 	const div = document.createElement("div");
 	div.className = "sticky-container";
 	div.style =
 		"position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;";
-	ReactDOM.render(
+
+	const root = createRoot(div);
+	root.render(
 		<Sticky
 			top={top}
 			left={left}
@@ -18,10 +20,8 @@ const renderSticky = (uuid = uuidv4(), top, left, width, height, text, color) =>
 			text={text}
 			uuid={uuid}
 			color={color}
-		/>,
-		div
+		/>
 	);
-	console.log(div);
 	document.body.appendChild(div);
 };
 

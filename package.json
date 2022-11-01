@@ -10,11 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "interactjs": "^1.10.17",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-draggable": "^4.4.5",
     "react-icons": "^4.6.0",
-    "react-rnd": "^10.3.7",
+    "react-resizable": "^3.0.4",
     "use-chrome-storage": "^1.0.8",
     "uuid": "^9.0.0"
   },

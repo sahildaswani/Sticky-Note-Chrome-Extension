@@ -5,38 +5,38 @@ import { EXTENSION_KEY } from "../utilities/constants";
 import { useChromeStorageLocal } from "use-chrome-storage";
 
 const Popup = () => {
-  const [storage, setStorage] = useChromeStorageLocal(EXTENSION_KEY);
-  console.log(storage);
-  // const project = useMemo(() => {
-  //   if (storage) {
-  //     const store = storage[EXTENSION_KEY];
-  //     return store.projects[store.currentProject];
-  //   }
-  //   return "";
-  // }, [storage]);
+	const [storage, setStorage] = useChromeStorageLocal(EXTENSION_KEY);
+	console.log(storage);
+	// const project = useMemo(() => {
+	//   if (storage) {
+	//     const store = storage[EXTENSION_KEY];
+	//     return store.projects[store.currentProject];
+	//   }
+	//   return "";
+	// }, [storage]);
 
-  return (
-    <div style={{ width: "300px", height: "400px" }}>
-      <button
-        onClick={() =>
-          chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-            chrome.tabs.sendMessage(tabs[0].id, { type: "ADD_STICKY" }, () => {
-              console.log("sent message");
-            });
-          })
-        }
-      >
-        Add Sticky
-      </button>
-      <button
-        onClick={() => {
-          console.log(storage);
-        }}
-      >
-        Get Storage
-      </button>
-    </div>
-  );
+	return (
+		<div style={{ width: "300px", height: "400px" }}>
+			<button
+				onClick={() =>
+					chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+						chrome.tabs.sendMessage(tabs[0].id, { type: "ADD_STICKY" }, () => {
+							console.log("sent message");
+						});
+					})
+				}
+			>
+				Add Sticky
+			</button>
+			<button
+				onClick={() => {
+					console.log(storage);
+				}}
+			>
+				Get Storage
+			</button>
+		</div>
+	);
 };
 
 const root = createRoot(document.getElementById("react-root"));

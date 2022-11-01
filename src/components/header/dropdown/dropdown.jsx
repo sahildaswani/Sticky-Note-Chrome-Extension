@@ -1,5 +1,5 @@
 import React from "react";
-import { COLORS } from "../../../../utilities/constants";
+import { COLORS } from "../../../utilities/constants";
 import DropdownItem from "./dropdownItem";
 import { BsPinAngle } from "react-icons/bs";
 import { AiOutlineDelete } from "react-icons/ai";

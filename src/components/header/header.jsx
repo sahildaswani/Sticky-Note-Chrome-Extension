@@ -1,5 +1,5 @@
 import React from "react";
-import useToggle from "../../../utilities/hooks/useToggle";
+import useToggle from "../../utilities/hooks/useToggle";
 import { IoCloseOutline } from "react-icons/io5";
 import { SlOptions } from "react-icons/sl";
 

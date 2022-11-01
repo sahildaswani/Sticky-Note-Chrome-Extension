@@ -1,18 +1,22 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 import useToggle from "../../utilities/hooks/useToggle";
+
 import Draggable from "react-draggable";
 import { ResizableBox } from "react-resizable";
-import Header from "./header/header";
-import { STICKY_WIDTH, STICKY_HEIGHT, COLORS, EXTENSION_KEY } from "../../utilities/constants";
-import { stickyTextarea, sticky } from "./sticky.styles";
 import { useChromeStorageLocal } from "use-chrome-storage";
+
+import { STICKY_WIDTH, STICKY_HEIGHT, COLORS, EXTENSION_KEY } from "../../utilities/constants";
 import { updateSticky, deleteSticky } from "../../utilities/storage";
+
+import Header from "../header/header";
+import { stickyTextarea, sticky } from "./sticky.styles";
 import "./resize.styles.css";
 
 const Sticky = ({ top, left, width, height, text, color, uuid }) => {
 	// sticky properties
 	const stickyRef = useRef(null);
+
 	const [stickyTop, setStickyTop] = useState(top || window.scrollY + 50);
 	const [stickyLeft, setStickyLeft] = useState(left || (window.innerWidth - STICKY_WIDTH) / 2);
 	const [stickyWidth, setStickyWidth] = useState(width || STICKY_WIDTH);
@@ -21,7 +25,7 @@ const Sticky = ({ top, left, width, height, text, color, uuid }) => {
 	const [stickyColor, setStickyColor] = useState(color || COLORS.BLUE);
 	const [pinned, togglePinned] = useToggle(false);
 
-	// store
+	// storage state and methods
 	const [storage, setStorage] = useChromeStorageLocal(EXTENSION_KEY);
 
 	const onDelete = (e) => {
@@ -43,6 +47,7 @@ const Sticky = ({ top, left, width, height, text, color, uuid }) => {
 		}
 	};
 
+	// update storage when sticky properties change
 	useEffect(() => {
 		onUpdate();
 	}, [stickyTop, stickyLeft, stickyWidth, stickyHeight, stickyText, stickyColor, pinned]);

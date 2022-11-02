@@ -4,6 +4,7 @@ import { EXTENSION_KEY } from "../utilities/constants";
 import { useChromeStorageLocal } from "use-chrome-storage";
 import { v4 as uuidv4 } from "uuid";
 import Button from "@mui/material/Button";
+import { sendMessage } from "../utilities/chrome";
 import Project from "./project/project";
 import "./popup.css";
 
@@ -18,6 +19,7 @@ const Popup = () => {
 				...storage,
 				currentProject: e.target.value,
 			});
+			sendMessage({ type: "UPDATE_PROJECT" });
 		}
 	};
 
@@ -47,11 +49,12 @@ const Popup = () => {
 					...storage.projects,
 					[uuid]: {
 						name: value,
-						stickies: [],
+						stickies: {},
 					},
 				},
 				currentProject: uuid,
 			});
+			sendMessage({ type: "UPDATE_PROJECT" });
 		}
 	};
 
@@ -64,6 +67,12 @@ const Popup = () => {
 		}
 	};
 
+	const addSticky = () => {
+		sendMessage({ type: "ADD_STICKY" }, () => {
+			console.log("sent message");
+		});
+	};
+
 	return (
 		<div className="popup">
 			<Project
@@ -74,17 +83,7 @@ const Popup = () => {
 				deleteProject={deleteProject}
 			/>
 
-			<Button
-				onClick={() =>
-					chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-						chrome.tabs.sendMessage(tabs[0].id, { type: "ADD_STICKY" }, () => {
-							console.log("sent message");
-						});
-					})
-				}
-			>
-				Add Sticky
-			</Button>
+			<Button onClick={addSticky}>Add Sticky</Button>
 			<Button
 				variant="contained"
 				color="primary"

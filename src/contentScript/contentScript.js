@@ -25,29 +25,39 @@ const renderSticky = (uuid = uuidv4(), top, left, width, height, text, color) =>
 	document.body.appendChild(div);
 };
 
+const renderAllStickies = (url) => {
+	chrome.storage.local.get([EXTENSION_KEY], (result) => {
+		const store = result[EXTENSION_KEY];
+		console.log(store);
+		const stickies = store.projects[store.currentProject].stickies;
+		if (stickies.hasOwnProperty(url)) {
+			stickies[url].forEach((sticky) => {
+				renderSticky(
+					sticky.uuid,
+					sticky.top,
+					sticky.left,
+					sticky.width,
+					sticky.height,
+					sticky.text,
+					sticky.color
+				);
+			});
+		}
+	});
+};
+
+const clearStickies = () => {
+	const stickyContainers = document.querySelectorAll(".sticky-container");
+	stickyContainers.forEach((stickyContainer) => stickyContainer.remove());
+};
+
 // TODO: content script
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	console.log("message", message);
 	if (message.type === "ADD_STICKY") {
 		renderSticky();
-	} else if (message.type === "PAGE_LOADED") {
-		chrome.storage.local.get([EXTENSION_KEY], (result) => {
-			const store = result[EXTENSION_KEY];
-			console.log(store);
-			const stickies = store.projects[store.currentProject].stickies;
-			if (stickies.hasOwnProperty(message.url)) {
-				stickies[message.url].forEach((sticky) => {
-					renderSticky(
-						sticky.uuid,
-						sticky.top,
-						sticky.left,
-						sticky.width,
-						sticky.height,
-						sticky.text,
-						sticky.color
-					);
-				});
-			}
-		});
+	} else if (message.type === "PAGE_LOADED" || message.type === "UPDATE_PROJECT") {
+		clearStickies();
+		renderAllStickies(message.url);
 	}
 });

@@ -7,11 +7,22 @@ import FormControl from "@mui/material/FormControl";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import { IoAdd } from "react-icons/io5";
-import { AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import Tooltip from "@mui/material/Tooltip";
 
-const SelectProject = ({ storage, selectedProject, handleProjectChange, setProjectState }) => {
-	const projects = useMemo(() => Object.keys(storage?.projects || {}), [storage]);
+const SelectProject = ({
+	storage,
+	selectedProject,
+	handleProjectChange,
+	deleteProject,
+	setProjectState,
+}) => {
+	const projects = useMemo(() => {
+		const sortedProjects = Object.entries(storage?.projects || {}).sort((a, b) =>
+			a[1].name.localeCompare(b[1].name)
+		);
+		return sortedProjects.map((p) => p[0]);
+	}, [storage]);
 
 	return (
 		<FormControl fullWidth size="small" sx={{ flexDirection: "row", alignItems: "center" }}>
@@ -40,6 +51,15 @@ const SelectProject = ({ storage, selectedProject, handleProjectChange, setProje
 				{projects.map((project) => (
 					<MenuItem key={project} value={project}>
 						{storage.projects[project].name}
+						{project === selectedProject && (
+							<IconButton
+								size="small"
+								sx={{ right: "10px", position: "absolute", zIndex: 10000000 }}
+								onClick={() => deleteProject(project)}
+							>
+								<AiOutlineDelete />
+							</IconButton>
+						)}
 					</MenuItem>
 				))}
 			</Select>

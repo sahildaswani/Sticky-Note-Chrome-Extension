@@ -63,6 +63,22 @@ const Popup = () => {
 			// delete project
 			const newStorage = storage;
 			delete newStorage.projects[uuid];
+
+			// if projects is empty, add a new project
+			if (Object.keys(newStorage.projects).length === 0) {
+				newStorage.projects = {
+					[uuidv4()]: {
+						name: "Untitled Project",
+						stickies: {},
+					},
+				};
+			}
+
+			const projectsAsc = Object.entries(newStorage.projects).sort((a, b) =>
+				a[1].name.localeCompare(b[1].name)
+			);
+			newStorage.currentProject = projectsAsc[0][0];
+
 			setStorage(newStorage);
 		}
 	};

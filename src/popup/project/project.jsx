@@ -24,6 +24,7 @@ const ProjectForm = ({
 					selectedProject={selectedProject}
 					handleProjectChange={handleProjectChange}
 					setProjectState={setProjectState}
+					deleteProject={deleteProject}
 				/>
 			);
 		case "add":

@@ -17,12 +17,7 @@ const EditProject = ({ storage, selectedProject, editProjectName, setProjectStat
 	};
 
 	return (
-		<FormControl
-			fullWidth
-			size="small"
-			sx={{ flexDirection: "row", alignItems: "center" }}
-			component="form"
-		>
+		<FormControl fullWidth size="small" sx={{ flexDirection: "row", alignItems: "center" }}>
 			<TextField
 				label="Project"
 				variant="outlined"
@@ -39,14 +34,13 @@ const EditProject = ({ storage, selectedProject, editProjectName, setProjectStat
 						setError(false);
 					}
 				}}
+				onKeyDown={(e) => {
+					if (e.key === "Enter") {
+						handleEditProjectName();
+					}
+				}}
 			/>
-			<IconButton
-				aria-label="done"
-				size="medium"
-				onClick={handleEditProjectName}
-				type="submit"
-				compontent="button"
-			>
+			<IconButton size="medium" onClick={handleEditProjectName}>
 				<MdDone />
 			</IconButton>
 		</FormControl>

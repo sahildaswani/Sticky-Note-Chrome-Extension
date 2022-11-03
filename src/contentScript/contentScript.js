@@ -2,9 +2,9 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { v4 as uuidv4 } from "uuid";
 import Sticky from "../components/sticky/sticky";
-import { EXTENSION_KEY } from "../utilities/constants";
+import { EXTENSION_KEY, COLORS } from "../utilities/constants";
 
-const renderSticky = (uuid = uuidv4(), top, left, width, height, text, color) => {
+const renderSticky = (uuid = uuidv4(), color, top, left, width, height, text) => {
 	const div = document.createElement("div");
 	div.className = "sticky-container";
 	div.style =
@@ -34,12 +34,12 @@ const renderAllStickies = (url) => {
 			stickies[url].forEach((sticky) => {
 				renderSticky(
 					sticky.uuid,
+					sticky.color,
 					sticky.top,
 					sticky.left,
 					sticky.width,
 					sticky.height,
-					sticky.text,
-					sticky.color
+					sticky.text
 				);
 			});
 		}
@@ -55,7 +55,7 @@ const clearStickies = () => {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	console.log("message", message);
 	if (message.type === "ADD_STICKY") {
-		renderSticky();
+		renderSticky(uuidv4(), COLORS[message.color]);
 	} else if (message.type === "PAGE_LOADED" || message.type === "UPDATE_PROJECT") {
 		clearStickies();
 		renderAllStickies(message.url);

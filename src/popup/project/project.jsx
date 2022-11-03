@@ -46,7 +46,7 @@ const ProjectForm = ({
 const Project = ({ storage, handleProjectChange, addProject, editProjectName, deleteProject }) => {
 	return (
 		<>
-			<Box sx={{ my: 1 }}>
+			<Box sx={{ mb: 2 }}>
 				<ProjectForm
 					storage={storage}
 					handleProjectChange={handleProjectChange}

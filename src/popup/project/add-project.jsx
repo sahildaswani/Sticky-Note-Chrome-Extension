@@ -21,12 +21,7 @@ const AddProject = ({ addProject, setProjectState }) => {
 	};
 
 	return (
-		<FormControl
-			fullWidth
-			size="small"
-			sx={{ flexDirection: "row", alignItems: "center" }}
-			component="form"
-		>
+		<FormControl fullWidth size="small" sx={{ flexDirection: "row", alignItems: "center" }}>
 			<TextField
 				label="Project"
 				variant="outlined"
@@ -41,14 +36,13 @@ const AddProject = ({ addProject, setProjectState }) => {
 						setError(false);
 					}
 				}}
+				onKeyDown={(e) => {
+					if (e.key === "Enter") {
+						handleAddProject();
+					}
+				}}
 			/>
-			<IconButton
-				aria-label="done"
-				size="medium"
-				onClick={handleAddProject}
-				type="submit"
-				compontent="button"
-			>
+			<IconButton aria-label="done" size="medium" onClick={handleAddProject}>
 				<MdDone />
 			</IconButton>
 		</FormControl>

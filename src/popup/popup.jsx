@@ -6,11 +6,12 @@ import { v4 as uuidv4 } from "uuid";
 import Button from "@mui/material/Button";
 import { sendMessage } from "../utilities/chrome";
 import Project from "./project/project";
+import AddStickyActions from "./stickyActions/addStickyActions";
 import "./popup.css";
 
 const Popup = () => {
 	const [storage, setStorage] = useChromeStorageLocal(EXTENSION_KEY);
-
+	const [color, setColor] = React.useState("BLUE");
 	console.log(storage);
 
 	const handleProjectChange = (e) => {
@@ -83,12 +84,6 @@ const Popup = () => {
 		}
 	};
 
-	const addSticky = () => {
-		sendMessage({ type: "ADD_STICKY" }, () => {
-			console.log("sent message");
-		});
-	};
-
 	return (
 		<div className="popup">
 			<Project
@@ -99,7 +94,8 @@ const Popup = () => {
 				deleteProject={deleteProject}
 			/>
 
-			<Button onClick={addSticky}>Add Sticky</Button>
+			<AddStickyActions />
+
 			<Button
 				variant="contained"
 				color="primary"

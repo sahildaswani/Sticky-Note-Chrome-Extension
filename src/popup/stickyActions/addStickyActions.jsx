@@ -13,7 +13,7 @@ import { styled } from "@mui/material/styles";
 
 const ToggleButtonGroup = styled(MuiToggleButtonGroup)(({ theme }) => ({
 	"& .MuiToggleButtonGroup-grouped": {
-		margin: theme.spacing(0.5),
+		margin: theme.spacing(1),
 		border: 0,
 		"&.Mui-disabled": {
 			border: 0,
@@ -49,6 +49,7 @@ const AddStickyActions = () => {
 				<Button
 					fullWidth
 					onClick={addSticky}
+					size="large"
 					sx={{
 						backgroundColor: COLORS[color].body,
 						color: "black",
@@ -70,7 +71,7 @@ const AddStickyActions = () => {
 				>
 					{colorArray.map((color) => (
 						<ToggleButton key={color} value={color} aria-label={color} sx={{ padding: "8px" }}>
-							<Box sx={{ width: "29px", height: "30px", backgroundColor: COLORS[color].body }} />
+							<Box sx={{ width: "33px", height: "33px", backgroundColor: COLORS[color].body }} />
 						</ToggleButton>
 					))}
 				</ToggleButtonGroup>

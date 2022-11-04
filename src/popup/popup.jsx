@@ -3,16 +3,15 @@ import { createRoot } from "react-dom/client";
 import { EXTENSION_KEY } from "../utilities/constants";
 import { useChromeStorageLocal } from "use-chrome-storage";
 import { v4 as uuidv4 } from "uuid";
-import Button from "@mui/material/Button";
 import { sendMessage } from "../utilities/chrome";
 import Project from "./project/project";
 import AddStickyActions from "./stickyActions/addStickyActions";
+import StickyList from "./stickyList/stickyList";
+import NoStickies from "./noStickies";
 import "./popup.css";
 
 const Popup = () => {
 	const [storage, setStorage] = useChromeStorageLocal(EXTENSION_KEY);
-	const [color, setColor] = React.useState("BLUE");
-	console.log(storage);
 
 	const handleProjectChange = (e) => {
 		if (storage) {
@@ -93,18 +92,13 @@ const Popup = () => {
 				editProjectName={editProjectName}
 				deleteProject={deleteProject}
 			/>
-
 			<AddStickyActions />
 
-			<Button
-				variant="contained"
-				color="primary"
-				onClick={() => {
-					console.log(storage);
-				}}
-			>
-				Get Storage
-			</Button>
+			{Object.keys(storage?.projects[storage?.currentProject]?.stickies || {}).length <= 0 ? (
+				<NoStickies />
+			) : (
+				<StickyList storage={storage} setStorage={setStorage} />
+			)}
 		</div>
 	);
 };

@@ -18,6 +18,9 @@ sticky-extension = {
           },
         ],
       }
+      webpageTitles = {
+        [url]: title
+      }
     }
   }
 }

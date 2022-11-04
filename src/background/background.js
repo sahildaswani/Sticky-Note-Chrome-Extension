@@ -11,6 +11,7 @@ chrome.runtime.onInstalled.addListener(() => {
 			[projectId]: {
 				name: "Untitled Project",
 				stickies: {},
+				webpageTitles: {},
 			},
 		},
 	};

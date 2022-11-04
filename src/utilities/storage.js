@@ -7,6 +7,7 @@ const updateSticky = (storage, setStorage, newStickyData) => {
 
 	if (!urlExists) {
 		newStorage.projects[newStorage.currentProject].stickies[url] = [];
+		newStorage.projects[newStorage.currentProject].webpageTitles[url] = document.title;
 	}
 
 	// check if sticky exists in storage
@@ -52,6 +53,7 @@ const deleteSticky = (e, uuid, storage, setStorage) => {
 	// delete url from storage if no stickies left
 	if (newStorage.projects[newStorage.currentProject].stickies[url].length === 0) {
 		delete newStorage.projects[newStorage.currentProject].stickies[url];
+		delete newStorage.projects[newStorage.currentProject].webpageTitles[url];
 	}
 
 	setStorage(newStorage);

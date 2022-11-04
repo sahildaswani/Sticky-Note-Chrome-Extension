@@ -43,18 +43,22 @@ const StickyItem = ({ url, sticky }) => {
 						onClick={handleDelete}
 					/>
 				</Box>
-				<Typography
-					variant="body2"
-					sx={{
-						color: "black",
-						fontSize: "13px",
-						lineHeight: "1.4",
-						py: 1,
-						px: 1.5,
-					}}
-				>
-					{sticky.text}
-				</Typography>
+				<Box sx={{ py: 1, px: 1.5 }}>
+					{sticky.text.split("\n").map((text) => (
+						<Typography
+							key={text}
+							variant="body2"
+							sx={{
+								color: "black",
+								fontSize: "13px",
+								lineHeight: "1.3",
+								fontSize: "14px",
+							}}
+						>
+							{text ? text : <br />}
+						</Typography>
+					))}
+				</Box>
 			</Paper>
 		</Grid>
 	);

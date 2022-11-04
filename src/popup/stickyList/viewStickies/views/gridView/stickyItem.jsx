@@ -44,20 +44,24 @@ const StickyItem = ({ url, sticky }) => {
 					/>
 				</Box>
 				<Box sx={{ py: 1, px: 1.5 }}>
-					{sticky.text.split("\n").map((text) => (
-						<Typography
-							key={text}
-							variant="body2"
-							sx={{
-								color: "black",
-								fontSize: "13px",
-								lineHeight: "1.3",
-								fontSize: "14px",
-							}}
-						>
-							{text ? text : <br />}
-						</Typography>
-					))}
+					{sticky.text.split("\n").map((text) =>
+						text ? (
+							<Typography
+								key={text}
+								variant="body2"
+								sx={{
+									color: "black",
+									fontSize: "13px",
+									lineHeight: "1.3",
+									fontSize: "14px",
+								}}
+							>
+								{text}
+							</Typography>
+						) : (
+							<br />
+						)
+					)}
 				</Box>
 			</Paper>
 		</Grid>

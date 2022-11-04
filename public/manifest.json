@@ -1,7 +1,7 @@
 {
-	"name": "Sticky Notes",
-	"description": "A simple extension that adds sticky notes to web pages.",
-	"version": "1.0",
+	"name": "MySticky",
+	"description": "An extension that adds sticky notes to webpages and keep track of your notes.",
+	"version": "1.0.0",
 	"manifest_version": 3,
 	"action": {
 		"default_popup": "popup.html"

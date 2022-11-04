@@ -34,6 +34,12 @@ const Header = ({ filteredColors, setFilteredColors, colorsArr, view, setView })
 		setFilteredColors(e.target.value);
 	};
 
+	const handleViewChange = (e, newView) => {
+		if (newView) {
+			setView(newView);
+		}
+	};
+
 	const renderValue = (selected) => {
 		if (selected.length === 0) {
 			return <Chip size="small" label="None" />;
@@ -88,11 +94,11 @@ const Header = ({ filteredColors, setFilteredColors, colorsArr, view, setView })
 				</Select>
 			</FormControl>
 			<Box sx={{ flex: 1 }} />
-			<ToggleButtonGroup value={view} exclusive onChange={(e, v) => setView(v)} size="medium">
+			<ToggleButtonGroup value={view} exclusive onChange={handleViewChange} size="medium">
 				<ToggleButton value="grid" aria-label="grid">
 					<BsFillGridFill />
 				</ToggleButton>
-				<ToggleButton value="list" aria-label="list">
+				<ToggleButton value="list" aria-label="list" disabled>
 					<BsList />
 				</ToggleButton>
 			</ToggleButtonGroup>

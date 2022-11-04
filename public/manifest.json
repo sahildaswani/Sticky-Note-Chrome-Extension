@@ -1,19 +1,25 @@
 {
-  "name": "Sticky Notes",
-  "description": "A simple extension that adds sticky notes to web pages.",
-  "version": "1.0",
-  "manifest_version": 3,
-  "action": {
-    "default_popup": "popup.html"
-  },
-  "permissions": ["tabs", "storage", "unlimitedStorage"],
-  "background": {
-    "service_worker": "background.js"
-  },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["contentScript.js"]
-    }
-  ]
+	"name": "Sticky Notes",
+	"description": "A simple extension that adds sticky notes to web pages.",
+	"version": "1.0",
+	"manifest_version": 3,
+	"action": {
+		"default_popup": "popup.html"
+	},
+	"icons": {
+		"16": "icon.png",
+		"32": "icon.png",
+		"48": "icon.png",
+		"128": "icon.png"
+	},
+	"permissions": ["tabs", "storage", "unlimitedStorage"],
+	"background": {
+		"service_worker": "background.js"
+	},
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["contentScript.js"]
+		}
+	]
 }

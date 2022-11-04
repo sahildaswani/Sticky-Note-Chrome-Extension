@@ -7,6 +7,7 @@ import { EXTENSION_KEY, COLORS } from "../utilities/constants";
 const renderSticky = (uuid = uuidv4(), color, top, left, width, height, text) => {
 	const div = document.createElement("div");
 	div.className = "sticky-container";
+	div.id = uuid;
 	div.style =
 		"position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;";
 
@@ -51,6 +52,11 @@ const clearStickies = () => {
 	stickyContainers.forEach((stickyContainer) => stickyContainer.remove());
 };
 
+const deleteSticky = (uuid) => {
+	const stickyContainer = document.getElementById(uuid);
+	stickyContainer.remove();
+};
+
 // TODO: content script
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	console.log("message", message);
@@ -59,5 +65,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	} else if (message.type === "PAGE_LOADED" || message.type === "UPDATE_PROJECT") {
 		clearStickies();
 		renderAllStickies(message.url);
+	} else if (message.type === "DELETE_STICKY") {
+		deleteSticky(message.uuid);
 	}
 });

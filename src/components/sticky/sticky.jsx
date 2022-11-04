@@ -30,7 +30,9 @@ const Sticky = ({ top, left, width, height, text, color, uuid }) => {
 	const [storage, setStorage] = useChromeStorageLocal(EXTENSION_KEY);
 
 	const onDelete = (e) => {
-		deleteSticky(e, uuid, storage, setStorage);
+		deleteSticky(window.location.href, uuid, storage, setStorage);
+		// remove sticky from dom
+		e.target.closest(".sticky-container").remove();
 	};
 
 	const onUpdate = () => {

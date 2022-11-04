@@ -26,9 +26,8 @@ const updateSticky = (storage, setStorage, newStickyData) => {
 	setStorage(newStorage);
 };
 
-const deleteSticky = (e, uuid, storage, setStorage) => {
+const deleteSticky = (url, uuid, storage, setStorage) => {
 	//TODO: delete sticky
-	const url = window.location.href;
 	const newStorage = storage;
 
 	// check if url exists in storage
@@ -57,9 +56,6 @@ const deleteSticky = (e, uuid, storage, setStorage) => {
 	}
 
 	setStorage(newStorage);
-
-	// remove sticky from dom
-	e.target.closest(".sticky-container").remove();
 };
 
 export { updateSticky, deleteSticky };

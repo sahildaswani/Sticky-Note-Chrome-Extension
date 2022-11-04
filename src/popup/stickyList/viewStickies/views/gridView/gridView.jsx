@@ -13,7 +13,7 @@ const GridView = ({ stickies, webpageTitles }) => {
 					<Title key={url} url={url} title={webpageTitles[url]} />
 					<Grid container spacing={1} columns={2} sx={{ my: 1 }}>
 						{stickies[url].map((sticky) => (
-							<StickyItem key={sticky.id} sticky={sticky} />
+							<StickyItem key={sticky.id} url={url} sticky={sticky} />
 						))}
 					</Grid>
 					<Divider sx={{ mb: 2 }} />

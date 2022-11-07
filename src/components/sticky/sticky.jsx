@@ -82,7 +82,7 @@ const Sticky = ({ top, left, width, height, text, color, uuid }) => {
 				setStickyLeft(d.x);
 			}}
 			disabled={pinned}
-			bounds="body"
+			bounds="parent"
 		>
 			<ResizableBox
 				width={stickyWidth}

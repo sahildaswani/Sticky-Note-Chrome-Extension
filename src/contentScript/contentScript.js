@@ -8,8 +8,7 @@ const renderSticky = (uuid = uuidv4(), color, top, left, width, height, text) =>
 	const div = document.createElement("div");
 	div.className = "sticky-container";
 	div.id = uuid;
-	div.style =
-		"position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;";
+	div.style = `position: absolute; top: 0; left: 0; width: 100%; height: ${document.body.scrollHeight}px; pointer-events: none;`;
 
 	const root = createRoot(div);
 	root.render(
